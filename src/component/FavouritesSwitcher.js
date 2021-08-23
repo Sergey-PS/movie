@@ -1,9 +1,8 @@
 import React from 'react'
-import { PhoneIcon, StarIcon } from "@chakra-ui/icons";
-import { Button, IconButton } from '@chakra-ui/react'
+import {StarIcon} from "@chakra-ui/icons";
+import {Button} from '@chakra-ui/react'
 
 function btnClick(id, movie) {
-    // console.log(localStorage.getItem(id))
     localStorage.setItem("m" + id, JSON.stringify(movie));
 }
 
@@ -22,11 +21,10 @@ function Favourites(props) {
     }
 
     return (
-        <Button {...btnStyles} rightIcon={<StarIcon color="yellow.500" />} onClick={btnClick.bind(this, props.id, props.movie)}>
+        <Button {...btnStyles} rightIcon={<StarIcon color="yellow.500"/>}
+                onClick={btnClick.bind(this, props.id, props.movie)}>
             Add Favourites
         </Button>
-
-        // <StarIcon color="yellow.500" h={30} />
     );
 }
 

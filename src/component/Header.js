@@ -1,6 +1,6 @@
 import {ColorModeSwitcher} from './ColorModeSwitcher';
 import React from "react";
-import {Button, Heading, Box, Image, Flex, useColorMode} from "@chakra-ui/react";
+import {Heading, Box, Image, Flex, useColorMode} from "@chakra-ui/react";
 import tmdb from '../logo/tmdb.svg'
 
 const Header = () => {

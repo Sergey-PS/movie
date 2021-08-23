@@ -1,10 +1,8 @@
 import React from 'react'
-import {Image, Button, Text, Grid, GridItem, Heading} from "@chakra-ui/react";
+import {Divider, Image, Button, Text, Grid, GridItem} from "@chakra-ui/react";
 import movieView from "../movieView";
-import {Divider} from "@chakra-ui/react";
 import ListItem from "./ListItem";
 import rav from "./rav";
-import star from '../logo/star.svg'
 import Favourites from "./FavouritesSwitcher";
 
 function viewMovie(movie) {
@@ -49,7 +47,7 @@ function Card(props) {
             m={2}
         >
             <GridItem rowSpan={3} colSpan={1} bg="tomato"><Image src={sourceImage} alt={movies.title}
-                                                                 /></GridItem>
+            /></GridItem>
             <GridItem {...grdItem}>
                 <Text fontFamily="verdana" fontSize="2xl">{movies.title}</Text>
                 <Divider colorScheme="yellow" w="xl"/>
@@ -58,17 +56,19 @@ function Card(props) {
                 {movies.overview}
 
 
-                    <ListItem g={rav(movies.genre_ids, genres)}/>
-                {/*{movies.genre_ids === genres.id ? genres.name : '+'}*/}
+                <ListItem g={rav(movies.genre_ids, genres)}/>
             </GridItem>
             <GridItem>
-                <table><tbody><tr><td>
-                <Button {...btnStyles} onClick={viewMovie.bind(this, movies.id)}>Go!</Button></td><td>
-                {/*<Image src={star} w="25px" alt="Добавить в избранное"/>*/}
-                {/*<Favourites alt="none"/>*/}
-                <Favourites id={movies.id} movie={movies}/>
-                </td></tr>
-                </tbody>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <Button {...btnStyles} onClick={viewMovie.bind(this, movies.id)}>Go!</Button></td>
+                        <td>
+                            <Favourites id={movies.id} movie={movies}/>
+                        </td>
+                    </tr>
+                    </tbody>
                 </table>
             </GridItem>
         </Grid>

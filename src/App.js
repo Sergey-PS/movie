@@ -33,8 +33,10 @@ function App() {
     }
 
     const scrollHandler = (e) => {
-        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100)
-            setFetching(true);
+        if (!favourites) {
+            if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100)
+                setFetching(true);
+        }
     }
 
     useEffect(() => {
@@ -51,11 +53,14 @@ function App() {
         if (favourites) {
             let tmp = [];
             for (let i = 0; i < localStorage.length; i++) {
-                tmp.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+                if (localStorage.key(i)[0] === "m") {
+                    console.log(localStorage.key(i)[0]);
+                    tmp.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+                }
             }
-            setPhotos(tmp);
+            if (tmp.length != 0) setPhotos(tmp);
         }
-        setFavourites(false);
+        //setFavourites(false);
     }, [favourites])
 
 
@@ -80,10 +85,12 @@ function App() {
     })
 
     function handlerSearch(e) {
-        setCurrentPage(1);
-        setPhotos([]);
-        setSearchMovie(e.target.value);
-        setFetching(true);
+        if (!favourites) {
+            setCurrentPage(1);
+            setPhotos([]);
+            setSearchMovie(e.target.value);
+            setFetching(true);
+        }
     }
 
     function favouritesClick() {
@@ -100,12 +107,12 @@ function App() {
                     <Image src={loupe} w="30px"/>
                     <Input w="lg" placeholder="Sea" onChange={handlerSearch}/>
                     <Text marginRight="10px" fontSize={22} w="100%" align="right" color="black">Total: {total}</Text>
-                    <Button {...btnStyles} onClick={favouritesClick}>Fav</Button>
+                    <Button {...btnStyles} onClick={favouritesClick}>favourites</Button>
                 </Flex>
                 {photos.map(photo => {
 
                         return (<div key={photo.id}>
-                            <Card movie={photo} genres={genreList}/>
+                            <Card movie={photo} fav={favourites} genres={genreList}/>
                         </div>)
                     }
                 )}

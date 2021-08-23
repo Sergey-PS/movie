@@ -21,10 +21,10 @@ function Favourites(props) {
     }
 
     return (
-        <Button {...btnStyles} rightIcon={<StarIcon color="yellow.500"/>}
-                onClick={btnClick.bind(this, props.id, props.movie)}>
-            Add Favourites
-        </Button>
+            <Button {...btnStyles} rightIcon={<StarIcon color="yellow.500"/>}
+                    onClick={btnClick.bind(this, props.id, props.movie)}>
+                Add Favourites
+            </Button>
     );
 }
 

@@ -5,7 +5,7 @@ import ListItem from "./ListItem";
 import rav from "./rav";
 import Favourites from "./FavouritesSwitcher";
 
-function viewMovie(movie) {
+function viewMovie(movie, fav) {
     movieView(movie);
 }
 
@@ -32,6 +32,13 @@ function Card(props) {
         bg: "gray.200",
         p: "5px"
     }
+
+    function favor(f) {
+        if (!f) {
+            return <Favourites id={movies.id} fav={props.fav} movie={movies}/>
+        }
+    }
+
     return (
 
         <Grid
@@ -65,7 +72,7 @@ function Card(props) {
                         <td>
                             <Button {...btnStyles} onClick={viewMovie.bind(this, movies.id)}>Go!</Button></td>
                         <td>
-                            <Favourites id={movies.id} movie={movies}/>
+                            {favor(props.fav)}
                         </td>
                     </tr>
                     </tbody>
